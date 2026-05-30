@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>Xin mời nhập thông tin của bạn </div>
+        <form action="info" >
+            <table id ="tbInfo">
+                <tr>
+                    <td>Họ tên: </td>
+                    <td><input type="text" id="inputName" name="name"/> </td>
+                </tr>
+                <tr>
+                    <td>Năm sinh: </td>
+                    <td><input type="number" min="0" id="inputYOB" name="yob" /></td>
+                </tr>
+                <tr>
+                    <td>Giới tính: </td>
+                    <td>
+                        <input type="radio" id="inputM" name="gender" value="Nam"/>
+                        <label for="inputM">Nam</label>
+                        <input type="radio" id="inputF" name="gender" value="Nữ"/>
+                        <label for="inputF">Nữ</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Khoa: </td>
+                    <td>
+                        <select id="inputDepartment" name="department">
+                            <option>----Mời chọn Khoa----</option>
+                            <option>Tâm thần</option>
+                            <option>Cai nghiện</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sở Thích: </td>
+                    <td>
+                        <input type="checkbox" name="hobbies" id="inputSport" value="Thể thao"/>
+                        <label for="inputSport">Thể thao</label>
+                        <input type="checkbox" name="hobbies" id="inputMovie" value="Xem phim" />
+                        <label for="inputMovie">Xem phim</label>
+                        <input type="checkbox" name="hobbies" id="inputTrave" value="Du lịch"/>
+                        <label for="inputTrave">Du lịch</label>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Submit" id="btnSubmit">
+        </form>
+    </body>
+</html>
