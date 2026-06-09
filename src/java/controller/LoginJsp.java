@@ -71,22 +71,21 @@ public class LoginJsp extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         // Đọc validUser và validPass từ context-param trong web.xml
         String validUser = request.getServletContext().getInitParameter("validUser");
         String validPass = request.getServletContext().getInitParameter("validPass");
-
-        if (username != null && password != null
-                && username.equalsIgnoreCase(validUser)
-                && password.equals(validPass)) {
-
+        
+        if (username.equalsIgnoreCase(validUser) && password.equals(validPass)) {
             response.sendRedirect("info.html");
-
         } else {
-            response.sendRedirect("login.jsp");
+            String error = "Invalid username and/or password";
+            //response.sendRedirect("login.jsp?error=" + error + "&username" + username + "&password=" + password);
+            request.setAttribute("error", error);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 

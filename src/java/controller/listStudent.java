@@ -11,14 +11,26 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.time.Year;
+import java.util.ArrayList;
+import model.Student;
 
 /**
  *
  * @author nguyendz
  */
-@WebServlet(name = "Info", urlPatterns = {"/info"})
-public class Info extends HttpServlet {
+@WebServlet(name = "listStudent", urlPatterns = {"/listStudent"})
+public class listStudent extends HttpServlet {
+
+    ArrayList<Student> list = new ArrayList<>();
+
+    @Override
+    public void init() throws ServletException {
+        list.add(new Student(1, "Nguyễn Văn A", 7.5));
+        list.add(new Student(2, "Nguyễn Văn B", 8.6));
+        list.add(new Student(3, "Nguyễn Văn C", 10));
+        list.add(new Student(4, "Nguyễn Văn D", 10));
+        list.add(new Student(5, "Nguyễn Văn E", 10));
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +49,10 @@ public class Info extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Info</title>");
+            out.println("<title>Servlet listStudent</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Info at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet listStudent at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,51 +70,9 @@ public class Info extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Info</title>");
-            out.println("</head>");
-            out.println("<body>");
-            String name = request.getParameter("name");
-            if (name == null) {
-                out.println("Họ tên: Không có tham số name <br/>");
-            } else if (name.isBlank()) {
-                out.println("Họ tên: không hợp lệ <br/>");
-            } else {
-                out.println("Họ tên: " + name + "<br/>");
-            }
-            try {
-                int yob = Integer.parseInt(request.getParameter("yob"));
-                int age = Year.now().getValue() - yob;
-                out.println("Tuổi: " + age + "<br/>");
-            } catch (Exception e) {
-                out.println("Tuổi: không hợp lệ <br/>");
-            }
-            String gender = request.getParameter("gender");
-            gender = gender == null || gender.isBlank() ? "Không xác định" : gender;
-            out.println("Giới tính: " + gender + "<br/>");
+        request.setAttribute("listS", list);
+        request.getRequestDispatcher("listStudent.jsp").forward(request, response);
 
-            String department = request.getParameter("department");
-            department = department == null || department.isBlank() ? "Không xác định" : department;
-            out.println("Khoa: " + department + "<br/>");
-            String[] hobbies = request.getParameterValues("hobbies");
-            if (hobbies == null || hobbies.length == 0) {
-                out.println("Sở thích: Không có <br/>");
-            } else {
-                out.println("Sở thích: ");
-                out.println("<ul>");
-                for (String s : hobbies) {
-                    out.println("<li>" + s + "</li>");
-                }
-                out.println("</ul>");
-            }
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     /**

@@ -12,15 +12,33 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file = "menu.jsp" %>
+
+        <div>Login form</div>
+        <%
+           //String error = request.getParameter("error");
+           String error = (String) request.getAttribute("error");
+           error = error == null ? "" : error;
+
+           String username = request.getParameter("username");
+           username = username == null ? "" : username;
+
+           String password = request.getParameter("password");
+           password = password == null ? "" : password;
+        %>
+
+        <p style="color: red"><%=error%></p><br/>
+
         <form action="login" method="post">
             Username:
-            <input type="text" name="username"><br/>
+            <input id="inputName" type="text" name="username" value="<%=username%>"><br/>
 
             Password:
-            <input type="password" name="password"><br/>
+            <input id="inputPass" type="password" name="password" value="<%=password%>"><br/>
 
-            <input type="submit" value="Login">
-            <input type="reset" value="Reset">
-    </form>
-</body>
+            <input id="btnSubmit" type="submit" value="Login">
+            <input id="btnReset" type="reset" value="Reset">
+            <%@include file = "footer.jsp" %>
+        </form>
+    </body>
 </html>
