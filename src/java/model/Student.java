@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author Vuong Nguyen
+ * @author VuongNguyen
  */
 public class Student {
 
@@ -14,47 +14,69 @@ public class Student {
     private String name;
     private double gpa;
 
+    // 1. Constructor không tham số
     public Student() {
+        this.id = 0;
+        this.name = "";
+        this.gpa = 0.0;
     }
 
+    // 2. Constructor có tham số (Lọc dữ liệu chuẩn tại đây)
     public Student(int id, String name, double gpa) {
-        this.id = id;
+        // Check ID: Nếu âm thì gán bằng 0
+        if (id < 0) {
+            this.id = 0;
+        } else {
+            this.id = id;
+        }
+
         this.name = name;
-        this.gpa = gpa;
+
+        // Check GPA: Nếu ngoài khoảng 0-10 thì gán bằng 0
+        if (gpa < 0 || gpa > 10) {
+            this.gpa = 0;
+        } else {
+            this.gpa = gpa;
+        }
     }
 
+    // 3. Các hàm Getter: Chỉ nhiệm vụ return, không xử lý logic
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getGpa() {
         return gpa;
     }
 
-    public void setGpa(double gpa) {
-        if (gpa<0 || gpa>10){
-            this.gpa = 0;
+    // 4. Các hàm Setter: Check dữ liệu trước khi cho phép thay đổi
+    public void setId(int id) {
+        if (id < 0) {
+            this.id = 0;
+        } else {
+            this.id = id;
         }
-        else {
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setGpa(double gpa) {
+        if (gpa < 0 || gpa > 10) {
+            this.gpa = 0;
+        } else {
             this.gpa = gpa;
         }
     }
-        
+
+    // 5. Hàm toString hiển thị theo định dạng của bạn
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", name=" + name + ", gpa=" + gpa + '}';
+        return "(" + id + ", " + name + ", " + gpa + ")";
     }
-
 }

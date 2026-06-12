@@ -19,11 +19,38 @@
         <h2>Student List</h2>
         <%
             ArrayList<Student> list = (ArrayList<Student>)request.getAttribute("listS");
-            for (Student s : list){
-            out.println(s + "<br/>");
-            }
+            if(list == null || list.sie() == 0{
+            out.println("Empty list of Students <br/>")
+            } else {
         %>
-        <%@include file="footer.jsp" %>
+        <table border="1px solid black">
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
 
-    </body>
+                <td>GPA</td>
+                <%
+                    for (Student s:List){
+                %>
+            <tr>
+                <td><%=s.getId()%></td>
+                <td><%=s.getName()%></td>
+
+                <td><%=s.getGpa()%></td>
+
+            </tr>
+            <%
+            }
+
+        </tr>
+    </table>
+
+    }
+    for (Student s : list){
+    out.println(s + "<br/>");
+    }
+    %>
+    <%@include file="footer.jsp" %>
+
+</body>
 </html>
