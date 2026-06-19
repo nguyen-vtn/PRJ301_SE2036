@@ -2,25 +2,25 @@ package model;
 
 import java.sql.Date;
 
-public class Product {
+public class Product extends Categories {
 
     private String productCode;
     private String name;
-    private double price;
+    private float price;
     private int stockQuantity;
-    private int categoryID;
-    private Date startDate;
+    private int categoriesId;
+    private java.util.Date startDate;
     private String image;
 
     public Product() {
     }
 
-    public Product(String productCode, String name, double price, int stockQuantity, int categoryID, Date startDate, String image) {
+    public Product(String productCode, String name, float price, int stockQuantity, int categoriesId, java.util.Date startDate, String image) {
         this.productCode = productCode;
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
-        this.categoryID = categoryID;
+        this.categoriesId = categoriesId;
         this.startDate = startDate;
         this.image = image;
     }
@@ -41,11 +41,11 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -57,19 +57,19 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
-    public int getCategoryID() {
-        return categoryID;
+    public int getCategoriesId() {
+        return categoriesId;
     }
 
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
+    public void setCategoriesId(int categoriesId) {
+        this.categoriesId = categoriesId;
     }
 
-    public Date getStartDate() {
+    public java.util.Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(java.util.Date startDate) {
         this.startDate = startDate;
     }
 
@@ -80,4 +80,5 @@ public class Product {
     public void setImage(String image) {
         this.image = image;
     }
+
 }

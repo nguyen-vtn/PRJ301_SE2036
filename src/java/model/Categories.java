@@ -2,31 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package model;
 
 /**
  *
- * @author Vuong Nguyen
+ * @author LENOVO
  */
-public class Category {
-    private int ID;
+public class Categories {
+
+    private int id;
     private String name;
 
-    public Category() {
+    public Categories() {
     }
 
-    public Category(int ID, String name) {
-        this.ID = ID;
+    public Categories(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -36,6 +36,5 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
-    
 
 }

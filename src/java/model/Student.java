@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author VuongNguyen
+ * @author LENOVO
  */
 public class Student {
 
@@ -14,69 +14,36 @@ public class Student {
     private String name;
     private double gpa;
 
-    // 1. Constructor không tham số
     public Student() {
-        this.id = 0;
-        this.name = "";
-        this.gpa = 0.0;
     }
 
-    // 2. Constructor có tham số (Lọc dữ liệu chuẩn tại đây)
     public Student(int id, String name, double gpa) {
-        // Check ID: Nếu âm thì gán bằng 0
-        if (id < 0) {
-            this.id = 0;
-        } else {
-            this.id = id;
-        }
-
+        this.id = id;
         this.name = name;
-
-        // Check GPA: Nếu ngoài khoảng 0-10 thì gán bằng 0
-        if (gpa < 0 || gpa > 10) {
-            this.gpa = 0;
-        } else {
-            this.gpa = gpa;
-        }
+        this.gpa = gpa;
     }
 
-    // 3. Các hàm Getter: Chỉ nhiệm vụ return, không xử lý logic
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public double getGpa() {
-        return gpa;
-    }
-
-    // 4. Các hàm Setter: Check dữ liệu trước khi cho phép thay đổi
-    public void setId(int id) {
-        if (id < 0) {
-            this.id = 0;
-        } else {
-            this.id = id;
-        }
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setGpa(double gpa) {
-        if (gpa < 0 || gpa > 10) {
-            this.gpa = 0;
-        } else {
-            this.gpa = gpa;
-        }
+    public double getGpa() {
+        return gpa;
     }
 
-    // 5. Hàm toString hiển thị theo định dạng của bạn
-    @Override
-    public String toString() {
-        return "(" + id + ", " + name + ", " + gpa + ")";
+    public void setGpa(double gpa) {
+        this.gpa = gpa;
     }
 }

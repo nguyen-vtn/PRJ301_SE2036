@@ -21,4 +21,13 @@
         <welcome-file>login.html</welcome-file>
         <welcome-file>cal.html</welcome-file>
     </welcome-file-list>
+    <servlet>
+        <servlet-name>AddCategories</servlet-name>
+        <servlet-class>controller.AddCategories</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddCategories</servlet-name>
+        <url-pattern>/addCategories</url-pattern>
+    </servlet-mapping>
 </web-app>
