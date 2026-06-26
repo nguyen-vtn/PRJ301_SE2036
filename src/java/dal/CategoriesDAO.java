@@ -138,4 +138,31 @@ public class CategoriesDAO extends DBContext {
             return e.getMessage();
         }
     }
+
+    public void updateCategories(Categories c) {
+        try {
+            String sql = "update Categories set name = ? where id = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, c.getName());
+            st.setInt(2, c.getId());
+            st.executeUpdate();
+            st.close();
+        } catch (Exception e) {
+            System.out.println("updateCategories: " + e.getMessage());
+        }
+    }
+
+    public String deleteCategories(int id) {
+        try {
+            String sql = "delete from Categories where id = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+            st.close();
+            return null;
+
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
 }

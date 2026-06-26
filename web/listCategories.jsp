@@ -12,6 +12,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Categories List</title>
+
+        <%-- Chuyển thẻ script vào trong thẻ head cho đúng chuẩn HTML --%>
+        <script type="text/javascript">
+            function confirmDelete(id) {
+                if (confirm("Do you really want to delete the categories with id = '" + id + "'?")) {
+                    window.location = "deleteCategories?id=" + id;
+                }
+            }
+        </script>
+
         <style>
             table {
                 width: 50%;
@@ -30,6 +40,16 @@
     </head>
     <body>
         <h1>Categories List</h1>
+
+        <%-- Bổ sung hiển thị thông báo lỗi khi xóa thất bại (ví dụ: dính khóa ngoại) --%>
+        <%
+            String error = (String) request.getAttribute("error");
+            if (error != null) {
+        %>
+        <h3 style="color: red;"><%= error %></h3>
+        <%
+            }
+        %>
 
         <%
             Map<Integer, Categories> listC = (Map<Integer, Categories>) request.getAttribute("listC");
@@ -60,10 +80,13 @@
                 <td><%= c.getId() %></td>
                 <td><%= c.getName() %></td>
                 <td>
-                    <a href="#"><input type="button" value="Delete"/></a>
-                    <a href="updateCategories?id=<%= c.getId() %>">
-                        <input type="button" value="Edit"/>
+                    <%-- Nút Delete: Dùng hàm confirmDelete bằng JavaScript --%>
+                    <a href="#" onclick="confirmDelete('<%= c.getId() %>')">
+                        <input type="button" value="Delete"/>
                     </a>
+
+                    <%-- Nút Edit: Bỏ thẻ <a> bọc ngoài, dùng trực tiếp onclick chuyển hướng --%>
+                    <input type="button" value="Edit" onclick="window.location.href = 'UpdateCategories?id=<%= c.getId() %>'"/>
                 </td>
             </tr>
 
@@ -79,9 +102,8 @@
 
         <br/>
 
-        <a href="addCategories.jsp">
-            <input type="button" value="Add Categories"/>
-        </a>
+        <%-- Nút Add Categories: Bỏ thẻ <a> bọc ngoài, dùng trực tiếp onclick chuyển hướng --%>
+        <input type="button" value="Add Categories" onclick="window.location.href = 'addCategories.jsp'"/>
 
         <br/><br/>
 
